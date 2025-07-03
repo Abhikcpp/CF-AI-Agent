@@ -1,0 +1,7 @@
+Suggest strategies for the upcoming Codeforces contest based on the user's profile:
+- Recommend problem-solving approaches based on strengths and weaknesses.
+- Highlight key tags and difficulty levels to focus on.
+- Provide general tips for time management and accuracy.
+
+User Profile:
+{submissions}

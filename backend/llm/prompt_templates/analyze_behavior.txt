@@ -1,0 +1,7 @@
+Analyze the following Codeforces submission data and provide insights:
+- Identify the user's strengths and weaknesses based on verdicts and problem tags.
+- Summarize performance trends: success rates, difficulty levels, and time patterns.
+- Recommend areas for improvement.
+
+Submission Data:
+{submissions}

@@ -1,0 +1,8 @@
+Flask==2.3.2             # Web framework for building the backend
+requests==2.31.0         # HTTP library for interacting with the Codeforces API
+openai==0.27.8           # Library to connect with OpenAI's GPT models
+matplotlib==3.7.1        # Visualization library for data insights
+seaborn==0.12.2          # Enhanced data visualization
+sqlite-utils==3.37
+gunicorn==20.1.0         # Production WSGI HTTP server for Flask
+Jinja2==3.1.2            # Template engine for Flask (if needed for rendering)

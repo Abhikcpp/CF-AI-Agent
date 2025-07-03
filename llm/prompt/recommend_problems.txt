@@ -1,0 +1,6 @@
+Based on the user's weak areas, recommend Codeforces problems for practice:
+- Include problems with the specified tags and difficulty levels.
+- Ensure the problems are diverse and help address weaknesses.
+
+Weak Areas:
+{weak_areas}
