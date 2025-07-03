@@ -1,31 +1,34 @@
 from dotenv import load_dotenv
-load_dotenv()  # load variables from .env
+load_dotenv()  # Load environment variables from .env
 
 import os
+import logging
+
 from flask import Flask, jsonify, Response
+from flask_cors import CORS
+
 from tools.data_fetcher import fetch_user_submissions
 from llm.llm_connector import LLMConnector
 from llm.reasoning_engine import ReasoningEngine
-import logging
 
-# Read the API key from environment variables.
+# Read the API key and Base URL from environment variables.
 API_KEY = os.environ.get("LLM_API_KEY")
 if not API_KEY:
     raise Exception("Please set the LLM_API_KEY environment variable.")
 
-# Correct Base URL (remove the model-specific part here)
 BASE_URL = os.environ.get("LLM_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/")
 
 # Initialize logging
 logging.basicConfig(level=logging.DEBUG)
 
+# Initialize Flask app and configure CORS & max content length
+app = Flask(__name__)
+CORS(app)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 # Initialize LLM Connector and Reasoning Engine
 llm_connector = LLMConnector(API_KEY, BASE_URL)
 reasoning_engine = ReasoningEngine(llm_connector)
-
-# Initialize Flask app
-app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 @app.route("/submissions/<handle>", methods=["GET"])
 def get_submissions(handle):
@@ -46,7 +49,6 @@ def analyze_user(handle):
     try:
         logging.debug(f"Analyzing behavior for handle: {handle}")
         submissions = fetch_user_submissions(handle)
-
         if not submissions:
             raise Exception(f"No submissions found for handle: {handle}")
 
